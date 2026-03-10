@@ -115,6 +115,9 @@
     .account-role { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.72rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
     .account-name { font-size: 0.95rem; color: var(--deep); margin-bottom: 8px; }
     .account-bank { font-size: 0.78rem; color: #888; letter-spacing: 1px; }
+
+    .toast { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.7); color: white; padding: 10px 20px; border-radius: 20px; font-size: 0.8rem; letter-spacing: 1px; z-index: 9999; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    .toast.show { opacity: 1; }
     
     /* ── Scroll reveal ── */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -383,6 +386,8 @@
   </div>
 </section>
 
+<div class="toast" id="toast">계좌번호가 복사되었습니다</div>
+  
 <!-- Account -->
 <section class="account-wrap">
   <div class="section-inner reveal">
@@ -392,13 +397,13 @@
     </p>
     <div class="thin-line"></div>
     <div class="account-grid">
-      <div class="account-card" onclick="navigator.clipboard.writeText('000-0000-0000').then(function(){ alert('계좌번호가 복사되었습니다.'); })">
+      <div class="account-card" onclick="navigator.clipboard.writeText('000-0000-0000').then(function(){ var t=document.getElementById('toast'); t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); }, 2000); })">
         <div class="account-role">신랑</div>
         <div class="account-name">박현원</div>
         <div class="account-bank">은행명 000-0000-0000</div>
         <div style="font-size:0.65rem; color:#bbb; margin-top:8px; letter-spacing:1px;">터치하여 복사</div>
       </div>
-      <div class="account-card" onclick="navigator.clipboard.writeText('000-0000-0000').then(function(){ alert('계좌번호가 복사되었습니다.'); })">
+      <div class="account-card" onclick="navigator.clipboard.writeText('000-0000-0000').then(function(){ var t=document.getElementById('toast'); t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); }, 2000); })">
         <div class="account-role">신부</div>
         <div class="account-name">이혜진</div>
         <div class="account-bank">은행명 000-0000-0000</div>
