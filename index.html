@@ -17,10 +17,13 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html {
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
+      scroll-snap-type: none;
     }
 
+    .greeting, .date-wrap, .gallery-wrap, .attend-wrap, .contact-wrap, footer {
+      scroll-snap-align: start;
+    }
+    
     body {
       background: var(--cream);
       font-family: 'Noto Serif KR', serif;
@@ -409,7 +412,7 @@
 
 <!-- Hero -->
 <div class="hero" id="hero">
-  <img src="1st.jpg" style="margin-bottom: 80px;" />
+  <img src="hero.jpg" style="margin-bottom: 80px;" />
   <div id="hearts-container" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
   <button onclick="document.querySelector('.greeting').scrollIntoView({behavior:'smooth'})" style="
     position: absolute;
@@ -571,6 +574,21 @@
 </footer-->
 
 <script>
+  // hero에서는 스크롤 막기
+  let heroLocked = true;
+  
+  window.addEventListener('wheel', function(e) {
+    if (heroLocked) e.preventDefault();
+  }, { passive: false });
+  
+  window.addEventListener('touchmove', function(e) {
+    if (heroLocked) e.preventDefault();
+  }, { passive: false });
+  
+  document.querySelector('button').addEventListener('click', function() {
+    heroLocked = false;
+  });
+  
   // Hearts
   const container = document.getElementById('hearts-container');
   for (let i = 0; i < 20; i++) {
