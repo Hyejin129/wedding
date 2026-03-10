@@ -51,7 +51,6 @@
       position:fixed; inset:0; z-index:999;
       display:flex; align-items:center; justify-content:center;
       background:#f5f0eb;
-      animation: wrapFade 0.8s ease 4s forwards;
     }
     @keyframes wrapFade { to { opacity:0; pointer-events:none; } }
     .envelope { width:280px; height:190px; position:relative; perspective:600px; }
@@ -446,41 +445,41 @@
 <body>
 
 <div class="envelope-wrap">
-  <div class="envelope">
-    <div class="env-body"></div>
-    <div class="env-left"></div>
-    <div class="env-right"></div>
-    <div class="env-bottom"></div>
-    <div class="env-flap"></div>
-    <div class="env-letter">
-      <div class="env-letter-text">HW · HJ</div>
-      <div class="env-letter-heart">♥</div>
-      <div class="env-letter-name">Will you celebrate with us?</div>
-      <button onclick="
-        document.querySelector('.envelope-wrap').style.display='none';
-        document.documentElement.style.scrollSnapType='y mandatory';
-        document.documentElement.style.overflowY='scroll';
-        document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
-      " style="
-        margin-top: 12px;
-        padding: 8px 20px;
-        border: 0.5px solid #111;
-        background: transparent;
-        font-family: 'Cormorant Garamond', serif;
-        font-style: italic;
-        font-size: 0.85rem;
-        letter-spacing: 3px;
-        cursor: pointer;
-        color: #111;
-      ">Yes, I'll join!!</button>
-</div>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:24px;">
+    <div class="envelope">
+      <div class="env-body"></div>
+      <div class="env-left"></div>
+      <div class="env-right"></div>
+      <div class="env-bottom"></div>
+      <div class="env-flap"></div>
+      <div class="env-letter">
+        <div class="env-letter-text">HW · HJ</div>
+        <div class="env-letter-heart">♥</div>
+        <div class="env-letter-name">Will you celebrate with us?</div>
+      </div>
     </div>
+    <button onclick="
+      document.querySelector('.envelope-wrap').style.display='none';
+      document.documentElement.style.scrollSnapType='y mandatory';
+      document.documentElement.style.overflowY='scroll';
+      document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
+    " style="
+      padding: 8px 20px;
+      border: 0.5px solid #111;
+      background: transparent;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+      color: #111;
+    ">Yes, I'll join!!</button>
   </div>
 </div>
 
 <!-- Hero -->
 <div class="hero" id="hero">
-  <img src="hero.jpg" style="margin-bottom: 80px;" />
+  <img src="hero.jpg" style="margin-bottom: 40px;" />
   <div id="hearts-container" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
 </div>
 
