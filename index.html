@@ -43,6 +43,27 @@
       width: 100%;
     }
 
+    /* ── Envelope ── */
+    .envelope-wrap {
+      position:fixed; inset:0; z-index:999;
+      display:flex; align-items:center; justify-content:center;
+      background:#f5f0eb;
+      animation: wrapFade 0.5s ease 2.8s forwards;
+    }
+    @keyframes wrapFade { to { opacity:0; pointer-events:none; } }
+    .envelope { width:280px; height:190px; position:relative; perspective:600px; }
+    .env-body { position:absolute; inset:0; background:#fff; border:1px solid #ddd; border-radius:2px; }
+    .env-bottom { position:absolute; bottom:0; left:0; right:0; height:95px; background:#f0ebe4; clip-path: polygon(0 100%, 50% 0%, 100% 100%); }
+    .env-left { position:absolute; top:0; left:0; width:140px; height:190px; background:#e8e2da; clip-path: polygon(0 0, 0 100%, 100% 100%); }
+    .env-right { position:absolute; top:0; right:0; width:140px; height:190px; background:#ede8e1; clip-path: polygon(100% 0, 0 100%, 100% 100%); }
+    .env-flap { position:absolute; top:0; left:0; right:0; height:100px; background:#f5f0eb; border:1px solid #ddd; clip-path: polygon(0 0, 50% 100%, 100% 0); transform-origin: top center; animation: openFlap 0.8s ease 0.8s forwards; z-index:4; }
+    @keyframes openFlap { 0% { transform: rotateX(0deg); } 100% { transform: rotateX(-180deg); } }
+    .env-letter { position:absolute; left:50%; bottom:10px; transform:translateX(-50%); width:240px; height:160px; background:white; border:1px solid #e0d8d0; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:8px; animation: riseUp 0.7s ease 1.4s forwards; opacity:0; z-index:5; }
+    @keyframes riseUp { 0% { transform:translateX(-50%) translateY(0); opacity:0; } 100% { transform:translateX(-50%) translateY(-80px); opacity:1; } }
+    .env-letter-text { font-family:'Georgia',serif; font-style:italic; font-size:0.75rem; letter-spacing:3px; color:#999; }
+    .env-letter-heart { font-size:1.2rem; color:#e74c3c; }
+    .env-letter-name { font-family:'Georgia',serif; font-size:0.9rem; letter-spacing:2px; color:#555; }
+
     /* ── Hero ── */
     .hero {
       background-color: white;
@@ -409,6 +430,21 @@
   </style>
 </head>
 <body>
+
+<div class="envelope-wrap">
+  <div class="envelope">
+    <div class="env-body"></div>
+    <div class="env-left"></div>
+    <div class="env-right"></div>
+    <div class="env-bottom"></div>
+    <div class="env-flap"></div>
+    <div class="env-letter">
+      <div class="env-letter-text">Wedding Invitation</div>
+      <div class="env-letter-heart">♥</div>
+      <div class="env-letter-name">PARK HYEUNWON · LEE HYEJIN</div>
+    </div>
+  </div>
+</div>
 
 <!-- Hero -->
 <div class="hero" id="hero">
