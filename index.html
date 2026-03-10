@@ -292,18 +292,15 @@
 
 <script>
   // Hero
-  const img = document.querySelector('.hero img');
-  img.style.opacity = '0';
-  img.style.transform = 'scale(1.05)';
-  document.querySelector('.envelope-wrap').style.display = 'none';
-  document.documentElement.style.scrollSnapType = 'y mandatory';
-  document.documentElement.style.overflowY = 'scroll';
-  document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
-  setTimeout(() => {
-    img.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
-    img.style.opacity = '1';
-    img.style.transform = 'scale(1)';
-  }, 100);
+  document.querySelector('.hero img').style.opacity = '0';
+  document.querySelector('.hero img').style.transform = 'scale(1.05)';
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.classList.add('visible');
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => observer.observe(r));
   
   // Hearts
   const container = document.getElementById('hearts-container');
