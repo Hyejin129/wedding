@@ -57,6 +57,13 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes fallHeart {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.5; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
     /* ── Section inner wrapper ── */
     .section-inner {
       width: 100%;
@@ -392,6 +399,7 @@
 <!-- Hero -->
 <div class="hero" id="hero">
   <img src="1st.jpg" />
+  <div id="hearts-container" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
 </div>
 
 <!-- Greeting -->
@@ -508,6 +516,22 @@
 </footer>
 
 <script>
+  // Hearts
+  const container = document.getElementById('hearts-container');
+  for (let i = 0; i < 20; i++) {
+    const h = document.createElement('div');
+    h.innerHTML = '♥';
+    h.style.cssText = `
+      position: absolute;
+      left: ${Math.random() * 100}%;
+      top: -30px;
+      font-size: ${10 + Math.random() * 20}px;
+      color: #ff0000;
+      opacity: ${0.4 + Math.random() * 0.6};
+      animation: fallHeart ${3 + Math.random() * 5}s linear ${Math.random() * 5}s infinite;
+    `;
+    container.appendChild(h);
+  }
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
