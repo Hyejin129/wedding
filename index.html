@@ -80,22 +80,6 @@
       animation: heroReveal 1.5s ease forwards;
     }
 
-    #arrow {
-      display: block;
-      width: 0;
-      height: 0;
-      border-top: 12px solid #111;
-      border-right: 8px solid transparent;
-      border-bottom: 8px solid transparent;
-      transform: rotate(-45deg);
-      animation: blink 1s ease-in-out infinite;
-    }
-    
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
-    }
-
     @keyframes heroReveal {
       0%   { opacity: 0; transform: scale(1.05); }
       100% { opacity: 1; transform: scale(1); }
@@ -469,9 +453,27 @@
     <div class="env-bottom"></div>
     <div class="env-flap"></div>
     <div class="env-letter">
-      <div class="env-letter-text">Wedding Invitation</div>
+      <div class="env-letter-text">HW · HJ</div>
       <div class="env-letter-heart">♥</div>
-      <div class="env-letter-name">HW · HJ</div>
+      <div class="env-letter-name">Will you celebrate with us?</div>
+      <button onclick="
+        document.querySelector('.envelope-wrap').style.display='none';
+        document.documentElement.style.scrollSnapType='y mandatory';
+        document.documentElement.style.overflowY='scroll';
+        document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
+      " style="
+        margin-top: 12px;
+        padding: 8px 20px;
+        border: 0.5px solid #111;
+        background: transparent;
+        font-family: 'Cormorant Garamond', serif;
+        font-style: italic;
+        font-size: 0.85rem;
+        letter-spacing: 3px;
+        cursor: pointer;
+        color: #111;
+      ">Yes, I'll join!!</button>
+</div>
     </div>
   </div>
 </div>
@@ -480,28 +482,6 @@
 <div class="hero" id="hero">
   <img src="hero.jpg" style="margin-bottom: 80px;" />
   <div id="hearts-container" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
-  <button onclick="document.querySelector('.greeting').scrollIntoView({behavior:'smooth'})" style="
-    position: absolute;
-    bottom: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 12px 32px;
-    border: 0.5px solid #111;
-    background: transparent;
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1rem;
-    letter-spacing: 3px;
-    cursor: pointer;
-    color: #111;
-    animation: pulse 2s ease-in-out infinite;
-  ">Yes, I'll join!!</button>
-  <span id="arrow" style="
-    position: absolute;
-    bottom: 70px;
-    left: 50%;
-    transform: translateX(-50%);
-  "></span>
 </div>
 
 <!-- Greeting -->
@@ -660,23 +640,6 @@
 </footer-->
 
 <script>
-  // hero에서는 스크롤 막기
-  let heroLocked = true;
-  
-  window.addEventListener('wheel', function(e) {
-    if (heroLocked) e.preventDefault();
-  }, { passive: false });
-  
-  window.addEventListener('touchmove', function(e) {
-    if (heroLocked) e.preventDefault();
-  }, { passive: false });
-  
-  document.querySelector('button').addEventListener('click', function() {
-    heroLocked = false;
-    document.documentElement.style.scrollSnapType = 'y mandatory';
-    document.documentElement.style.overflowY = 'scroll';
-    document.querySelector('.greeting').scrollIntoView({behavior:'smooth'});
-  });
   
   // Hearts
   const container = document.getElementById('hearts-container');
