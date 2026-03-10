@@ -11,51 +11,116 @@
       --rose: #111111;
       --deep: #111111;
       --gold: #555555;
-      --soft: #f5f5f5;  
+      --soft: #f5f5f5;
     }
-    
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    
+
     html { scroll-snap-type: none; height: 100%; }
-    
-    body { background: var(--cream); font-family: 'Noto Serif KR', serif; color: var(--deep); overflow-x: hidden; overflow-y: scroll; height: 100%; }
-    
-    /* ── Snap ── */
-    .hero, section, .attend-wrap, footer { scroll-snap-align: start; height: 100vh; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; }
-    
-    /* ── Envelope ── */
-    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 80px; align-items: flex-start; justify-content: center; background: #f5f0eb; }
+
+    body {
+      background: var(--cream);
+      font-family: 'Noto Serif KR', serif;
+      color: var(--deep);
+      overflow-x: hidden;
+      overflow-y: scroll;
+      height: 100%;
+    }
+
+    .hero, section, .attend-wrap, footer {
+      scroll-snap-align: start;
+      height: 100vh;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    /* Envelope */
+    .envelope-wrap {
+      position: fixed; inset: 0; z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f5f0eb;
+      padding-top: 60px;
+    }
+
+    .invited-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2rem;
+      letter-spacing: 4px;
+      color: #555;
+      margin-bottom: 40px;
+    }
+
     .envelope { width: 280px; height: 190px; position: relative; perspective: 600px; }
     .env-body { position: absolute; inset: 0; background: #fff; border: 1px solid #ddd; border-radius: 2px; }
     .env-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 95px; background: #f0ebe4; clip-path: polygon(0 100%, 50% 0%, 100% 100%); }
     .env-left { position: absolute; top: 0; left: 0; width: 140px; height: 190px; background: #e8e2da; clip-path: polygon(0 0, 0 100%, 100% 100%); }
     .env-right { position: absolute; top: 0; right: 0; width: 140px; height: 190px; background: #ede8e1; clip-path: polygon(100% 0, 0 100%, 100% 100%); }
-    .env-flap { position: absolute; top: 0; left: 0; right: 0; height: 100px; background: #f5f0eb; border: 1px solid #ddd; clip-path: polygon(0 0, 50% 100%, 100% 0); transform-origin: top center; animation: openFlap 0.8s ease 0.8s forwards; z-index: 4; }
-    .env-letter { position: absolute; left: 50%; bottom: 10px; transform: translateX(-50%); width: 240px; height: 160px; background: white; border: 1px solid #e0d8d0; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px; animation: riseUp 0.7s ease 1.4s forwards; opacity: 0; z-index: 5; }
+    .env-flap {
+      position: absolute; top: 0; left: 0; right: 0; height: 100px;
+      background: #f5f0eb; border: 1px solid #ddd;
+      clip-path: polygon(0 0, 50% 100%, 100% 0);
+      transform-origin: top center;
+      animation: openFlap 0.8s ease 0.8s forwards;
+      z-index: 4;
+    }
+    .env-letter {
+      position: absolute; left: 50%; bottom: 10px;
+      transform: translateX(-50%);
+      width: 240px; height: 160px;
+      background: white; border: 1px solid #e0d8d0;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 8px;
+      animation: riseUp 0.7s ease 1.4s forwards;
+      opacity: 0; z-index: 5;
+    }
     .env-letter-text { font-family: 'Georgia', serif; font-style: italic; font-size: 0.75rem; letter-spacing: 3px; color: #999; }
     .env-letter-heart { font-size: 1.2rem; color: #e74c3c; }
     .env-letter-name { font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 2px; color: #555; }
-    
-    /* ── Join button ── */
-    #join-btn { margin-top: 60px; padding: 8px 20px; border: 0.5px solid #111; background: transparent; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; letter-spacing: 3px; cursor: pointer; color: #111; opacity: 0; animation: btnAppear 0.5s ease 2.1s forwards, btnPulse 1.8s ease-in-out 2.6s infinite; }
-    
-    /* ── Hero ── */
+
+    #join-btn {
+      margin-top: 48px;
+      padding: 12px 28px;
+      border: 0.5px solid #111;
+      background: transparent;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+      color: #111;
+      opacity: 0;
+      animation: btnAppear 0.5s ease 2.1s forwards, btnPulse 1.8s ease-in-out 2.6s infinite;
+    }
+
+    /* Hero */
     .hero { background-color: white; position: relative; }
-    .hero img { max-height: 100vh; max-width: 100%; object-fit: contain; }
-    .hero.reveal-hero { animation: heroReveal 1.5s ease forwards; }
-    
-    /* ── Section ── */
+    .hero img {
+      max-height: 100vh;
+      max-width: 100%;
+      object-fit: contain;
+      opacity: 0;
+    }
+
+    /* Section */
     .section-inner { width: 100%; max-width: 480px; padding: 40px 30px; }
-    .section-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 2rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; text-align: center; margin-bottom: 20px; }
+    .section-label { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; text-align: center; margin-bottom: 20px; }
     .section-title { font-family: 'Gowun Dodum', sans-serif; font-size: 2rem; font-weight: 300; text-align: center; color: var(--deep); margin-bottom: 12px; }
     .thin-line { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 36px; }
-    
-    /* ── Greeting ── */
+
+    /* Greeting */
     .greeting { background: var(--soft); }
     .greeting-text { font-size: 0.92rem; line-height: 2.1; text-align: center; color: rgba(61,43,31,0.8); word-break: keep-all; }
     .greeting-names { margin-top: 32px; text-align: center; font-size: 0.88rem; font-weight: 700; color: var(--rose); letter-spacing: 1px; }
-    
-    /* ── Date ── */
+
+    /* Date */
     .date-wrap { background: white; overflow: hidden; }
     .date-wrap .section-inner { padding: 20px 30px; }
     .calendar { background: white; padding: 20px 0; margin-bottom: 20px; }
@@ -65,17 +130,35 @@
     .cal-day { font-size: 0.85rem; padding: 8px 2px; color: #111; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; position: relative; }
     .cal-day.empty { opacity: 0; pointer-events: none; }
     .cal-day.wedding { font-weight: 700; }
-    .cal-day.wedding::before { content: '♥'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -48%); font-size: 2.4rem; color: #ff0000; z-index: 0; opacity: 0.85; line-height: 1; }
+    .cal-day.wedding::before { content: '♥'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -48%); font-size: 2.4rem; color: #e74c3c; z-index: 0; opacity: 0.85; line-height: 1; }
     .cal-day.wedding span { position: relative; z-index: 1; color: white; }
-    
-    /* ── Venue ── */
+
+    /* Venue */
     .venue-wrap { background: var(--soft); }
-    
-    /* ── Map button ── */
+
+    /* Map btn */
     .map-btn { display: block; width: 100%; margin-top: 20px; padding: 14px; border: 1px solid var(--gold); background: transparent; color: var(--deep); font-family: 'Noto Serif KR', serif; font-size: 0.82rem; letter-spacing: 3px; cursor: pointer; text-align: center; text-decoration: none; transition: all 0.3s; }
     .map-btn:hover { background: var(--gold); color: white; }
-    
-    /* ── Contact ── */
+
+    /* Gallery */
+    .gallery-wrap { background: var(--cream); }
+    .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+    .gallery-item { aspect-ratio: 3/4; background: var(--soft); border: 1px solid rgba(201,169,110,0.2); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .gallery-item:first-child { grid-column: span 2; aspect-ratio: 3/2; }
+    .gallery-placeholder { display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(61,43,31,0.25); }
+    .gallery-placeholder svg { width: 32px; height: 32px; }
+    .gallery-placeholder span { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* RSVP */
+    .attend-wrap { background: #111; color: #fff; text-align: center; flex-direction: column; }
+    .attend-wrap .section-label { color: #fff; }
+    .attend-wrap .section-title { color: #fff; }
+    .attend-wrap .thin-line { background: rgba(255,255,255,0.3); }
+    .attend-text { font-size: 0.88rem; line-height: 2; color: rgba(255,255,255,0.7); margin-bottom: 36px; }
+    .attend-btn { display: inline-block; padding: 14px 40px; border: 1px solid #fff; color: #fff; font-family: 'Noto Serif KR', serif; font-size: 0.82rem; letter-spacing: 3px; cursor: pointer; text-decoration: none; transition: all 0.3s; background: transparent; }
+    .attend-btn:hover { background: #fff; color: #111; }
+
+    /* Contact */
     .contact-wrap { background: var(--soft); }
     .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .contact-card { background: white; border: 1px solid rgba(201,169,110,0.2); padding: 20px 16px; text-align: center; }
@@ -83,32 +166,31 @@
     .contact-name { font-size: 0.95rem; color: var(--deep); margin-bottom: 12px; }
     .contact-btn { display: inline-block; padding: 7px 16px; border: 1px solid rgba(100,100,100,0.3); color: var(--deep); font-size: 0.72rem; letter-spacing: 2px; cursor: pointer; text-decoration: none; transition: all 0.25s; }
     .contact-btn:hover { background: var(--deep); color: white; }
-    
-    /* ── Footer ── */
+
+    /* Footer */
     footer { background: var(--deep); text-align: center; flex-direction: column; gap: 12px; }
     .footer-names { font-family: 'Gowun Dodum', sans-serif; font-size: 1.4rem; font-weight: 300; color: var(--cream); letter-spacing: 4px; }
     .footer-date { font-size: 0.75rem; letter-spacing: 3px; color: rgba(250,246,240,0.4); }
-    
-    /* ── Scroll reveal ── */
+
+    /* Scroll reveal */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
     .reveal.visible { opacity: 1; transform: none; }
-    
-    /* ── Keyframes ── */
+
+    /* Keyframes */
     @keyframes openFlap { 0% { transform: rotateX(0deg); } 100% { transform: rotateX(-180deg); } }
     @keyframes riseUp { 0% { transform: translateX(-50%) translateY(0); opacity: 0; } 100% { transform: translateX(-50%) translateY(-80px); opacity: 1; } }
     @keyframes btnAppear { to { opacity: 1; } }
     @keyframes btnPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-    @keyframes heroReveal { 0% { opacity: 0; transform: scale(1.05); } 100% { opacity: 1; transform: scale(1); } }
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fallHeart { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 0.5; } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
   </style>
 </head>
 <body>
 
-<div class="envelope-wrap">
-  <div style="display:flex; flex-direction:column; align-items:center; gap:24px;">
-    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; letter-spacing:4px; color:#555; margin-bottom:10px;">You're Invited</div>
-    <div class="envelope" style="margin-top:40px;">
+<!-- Envelope Intro -->
+<div class="envelope-wrap" id="envelope-wrap">
+  <div class="invited-title">You're Invited</div>
+  <div style="display:flex; flex-direction:column; align-items:center;">
+    <div class="envelope">
       <div class="env-body"></div>
       <div class="env-left"></div>
       <div class="env-right"></div>
@@ -121,36 +203,43 @@
       </div>
     </div>
     <button id="join-btn" onclick="
-      document.querySelector('.envelope-wrap').style.display='none';
-      document.documentElement.style.scrollSnapType='y mandatory';
-      document.documentElement.style.overflowY='scroll';
+      var img = document.querySelector('.hero img');
+      img.style.opacity = '0';
+      img.style.transform = 'scale(1.05)';
+      img.style.transition = 'none';
+      document.getElementById('envelope-wrap').style.display = 'none';
+      document.documentElement.style.scrollSnapType = 'y mandatory';
+      document.documentElement.style.overflowY = 'scroll';
       document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
+      setTimeout(function() {
+        img.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
+        img.style.opacity = '1';
+        img.style.transform = 'scale(1)';
+      }, 400);
     ">Yes, I'll join!!</button>
   </div>
 </div>
 
 <!-- Hero -->
 <div class="hero" id="hero">
-  <img src="hero.jpg" style="margin-bottom: 40px;" />
-  <div id="hearts-container" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
+  <img src="1st.jpg" />
 </div>
 
 <!-- Greeting -->
 <section class="greeting">
   <div class="section-inner reveal">
     <div class="section-label">Greeting</div>
+    <div class="section-title">인사말</div>
     <div class="thin-line"></div>
     <p class="greeting-text">
-      Two are better than one,<br>
-      because they have a good return for their labour.<br>
-      Ecclesiastes 4:9<br><br>
-      서로에게 힘이 되고 기쁨이 되는<br>
-      한 가정을 이루려 합니다.<br><br>
-      귀한 걸음 하시어<br>
-      저희의 새로운 시작을 축복해 주시면<br>
-      감사하겠습니다.
+      서로가 서로에게 가장 큰 선물이 되어<br>
+      평생을 함께 걸어가려 합니다.<br><br>
+      저희 두 사람이 하나가 되는 날,<br>
+      소중한 분들을 모시고자 합니다.<br><br>
+      바쁘신 중에도 자리를 빛내주신다면<br>
+      더없는 기쁨으로 간직하겠습니다.
     </p>
-    <br><div class="greeting-names">박현원 · 이혜진 올림</div>
+    <div class="greeting-names">박현원 · 이혜진 올림</div>
   </div>
 </section>
 
@@ -159,7 +248,6 @@
   <div class="section-inner reveal">
     <div class="section-label">Wedding Day</div>
     <div class="thin-line"></div>
-    <div style="text-align:center; font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; color:#111; margin-bottom:16px; line-height:1;">8</div>
     <div class="calendar">
       <div class="calendar-grid">
         <div class="cal-day-name">일</div>
@@ -169,46 +257,18 @@
         <div class="cal-day-name">목</div>
         <div class="cal-day-name">금</div>
         <div class="cal-day-name">토</div>
-      
-        <div class="cal-day">1</div>
-        <div class="cal-day">2</div>
-        <div class="cal-day">3</div>
-        <div class="cal-day">4</div>
-        <div class="cal-day">5</div>
-        <div class="cal-day">6</div>
-        <div class="cal-day">7</div>
-      
-        <div class="cal-day">8</div>
-        <div class="cal-day">9</div>
-        <div class="cal-day">10</div>
-        <div class="cal-day">11</div>
-        <div class="cal-day">12</div>
-        <div class="cal-day">13</div>
-        <div class="cal-day">14</div>
-      
-        <div class="cal-day">15</div>
-        <div class="cal-day">16</div>
-        <div class="cal-day">17</div>
-        <div class="cal-day">18</div>
-        <div class="cal-day">19</div>
-        <div class="cal-day">20</div>
-        <div class="cal-day">21</div>
-      
-        <div class="cal-day">22</div>
-        <div class="cal-day">23</div>
-        <div class="cal-day">24</div>
-        <div class="cal-day">25</div>
-        <div class="cal-day">26</div>
-        <div class="cal-day">27</div>
-        <div class="cal-day wedding"><span>28</span></div>
-      
-        <div class="cal-day">29</div>
-        <div class="cal-day">30</div>
-        <div class="cal-day">31</div>
-        <div class="cal-day empty"></div>
-        <div class="cal-day empty"></div>
-        <div class="cal-day empty"></div>
-        <div class="cal-day empty"></div>
+        <div class="cal-day wedding"><span>1</span></div>
+        <div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div>
+        <div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div>
+        <div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div>
+        <div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div>
+        <div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div>
+        <div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div>
+        <div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div>
+        <div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div>
+        <div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day">31</div>
+        <div class="cal-day empty"></div><div class="cal-day empty"></div>
+        <div class="cal-day empty"></div><div class="cal-day empty"></div>
       </div>
     </div>
   </div>
@@ -227,6 +287,7 @@
     <a class="map-btn" href="#" onclick="alert('지도 연결 예정')">✦ 오시는 길 보기</a>
   </div>
 </section>
+
 <!-- Gallery -->
 <!--section class="gallery-wrap">
   <div class="section-inner reveal">
@@ -239,17 +300,6 @@
       <div class="gallery-item"><div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Photo</span></div></div>
       <div class="gallery-item"><div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Photo</span></div></div>
     </div>
-  </div>
-</section-->
-
-<!-- Attend -->
-<!--section class="attend-wrap">
-  <div class="section-inner reveal">
-    <div class="section-label">RSVP</div>
-    <div class="section-title">참석 여부</div>
-    <div class="thin-line"></div>
-    <p class="attend-text">참석 여부를 알려주시면<br>더욱 세심하게 준비하겠습니다.</p>
-    <a class="attend-btn" href="tel:010-0000-0000">✦ 참석 의사 전달하기</a>
   </div>
 </section-->
 
@@ -291,36 +341,6 @@
 </footer-->
 
 <script>
-  // Hero
-  const img = document.querySelector('.hero img');
-  img.style.opacity = '0';
-  img.style.transform = 'scale(1.05)';
-  document.querySelector('.envelope-wrap').style.display = 'none';
-  document.documentElement.style.scrollSnapType = 'y mandatory';
-  document.documentElement.style.overflowY = 'scroll';
-  document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
-  setTimeout(() => {
-    img.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
-    img.style.opacity = '1';
-    img.style.transform = 'scale(1)';
-  }, 100);
-  
-  // Hearts
-  const container = document.getElementById('hearts-container');
-  for (let i = 0; i < 20; i++) {
-    const h = document.createElement('div');
-    h.innerHTML = '♥';
-    h.style.cssText = `
-      position: absolute;
-      left: ${Math.random() * 100}%;
-      top: -30px;
-      font-size: ${10 + Math.random() * 20}px;
-      color: #ffbaba;
-      opacity: ${0.4 + Math.random() * 0.6};
-      animation: fallHeart ${6 + Math.random() * 8}s linear ${Math.random() * 5}s infinite;
-    `;
-    container.appendChild(h);
-  }
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
