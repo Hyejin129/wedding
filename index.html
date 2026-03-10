@@ -18,6 +18,7 @@
 
     html {
       scroll-snap-type: none;
+      height: 100%;
     }
 
     .greeting, .date-wrap, .gallery-wrap, .attend-wrap, .contact-wrap, footer {
@@ -29,6 +30,8 @@
       font-family: 'Noto Serif KR', serif;
       color: var(--deep);
       overflow-x: hidden;
+      overflow-y: scroll;
+      height: 100%;
     }
 
     /* ── Snap containers ── */
@@ -624,6 +627,8 @@
   
   document.querySelector('button').addEventListener('click', function() {
     heroLocked = false;
+    document.documentElement.style.scrollSnapType = 'y mandatory';
+    document.querySelector('.greeting').scrollIntoView({behavior:'smooth'});
   });
   
   // Hearts
