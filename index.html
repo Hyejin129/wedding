@@ -91,18 +91,16 @@
     /* ── Gallery ── */
     .gallery-wrap { height: auto !important; min-height: 100vh; background: var(--soft); overflow: hidden !important; }
     .gallery-carousel { width: 100%; overflow: hidden; }
-    .gallery-track { display: flex; animation: slideLeft 12s linear infinite; }
-    .gallery-slide { min-width: 100%; padding: 0 4px; box-sizing: border-box; }
+    .gallery-track { display: flex; transition: transform 0.8s ease; }
+    .gallery-slide { min-width: 100%; box-sizing: border-box; }
     .gallery-single { display: flex; justify-content: center; }
-    .gallery-single .gallery-item { width: calc(50% - 6px); aspect-ratio: 3/4; }
+    .gallery-single .gallery-item { width: calc(50% - 6px); }
     .gallery-double { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .gallery-item { background: white; border: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: center; aspect-ratio: 3/4; }
     .gallery-placeholder { display: flex; flex-direction: column; align-items: center; gap: 10px; color: #ccc; }
     .gallery-placeholder svg { width: 28px; height: 28px; }
     .gallery-placeholder span { font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; }
-    
-    @keyframes slideLeft { 0% { transform: translateX(0); } 100% { transform: translateX(-75%); } }
 
     /* ── Account ── */
     .account-wrap { height: 50vh !important; min-height: unset !important; padding: 60px 0; background: white; }
@@ -442,6 +440,7 @@
     `;
     container.appendChild(h);
   }
+  
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
@@ -450,6 +449,28 @@
     });
   }, { threshold: 0.15 });
   reveals.forEach(r => observer.observe(r));
+
+  // Gallery auto slide
+  var track = document.querySelector('.gallery-track');
+  var slides = document.querySelectorAll('.gallery-slide');
+  var current = 0;
+  var total = slides.length - 1;
+  
+  setInterval(function() {
+    current++;
+    track.style.transition = 'transform 0.8s ease';
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    
+    if (current >= total) {
+      setTimeout(function() {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
+        current = 0;
+      }, 800);
+    }
+  }, 3000);
+
+  
 </script>
 </body>
 </html>
