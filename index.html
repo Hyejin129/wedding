@@ -16,7 +16,7 @@
     
     * { margin: 0; padding: 0; box-sizing: border-box;  -webkit-text-size-adjust: 100%; touch-action: pan-y; }
     
-    html { scroll-snap-type: none; height: 100%; }
+    html { scroll-snap-type: none; height: 100%; scroll-behavior: auto; }
     
     body { background: var(--cream); font-family: 'Noto Serif KR', serif; color: var(--deep); overflow-x: hidden; overflow-y: scroll; height: 100%; }
 
@@ -94,7 +94,7 @@
     .gallery-item { aspect-ratio: 3/4; background: white; border: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: center; }
 
     /* ── Account ── */
-    .account-wrap { height: 50 !important; min-height: unset !important; padding: 60px 0; background: white; }
+    .account-wrap { height: 50vh !important; min-height: unset !important; padding: 60px 0; background: white; }
     .account-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
     .account-card { background: var(--soft); padding: 20px 16px; text-align: center; }
     .account-role { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.72rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
