@@ -111,7 +111,7 @@
     /* ── Account ── */
     .account-wrap { height: 50vh !important; min-height: unset !important; padding: 60px 0; background: white; }
     .account-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
-    .account-card { background: var(--soft); padding: 20px 16px; text-align: center; }
+    .account-card { background: var(--soft); padding: 20px 16px; text-align: center; cursor: pointer; }
     .account-role { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.72rem; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
     .account-name { font-size: 0.95rem; color: var(--deep); margin-bottom: 8px; }
     .account-bank { font-size: 0.78rem; color: #888; letter-spacing: 1px; }
@@ -397,17 +397,15 @@
     </p>
     <div class="thin-line"></div>
     <div class="account-grid">
-      <div class="account-card" onclick="navigator.clipboard.writeText('000-0000-0000').then(function(){ var t=document.getElementById('toast'); t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); }, 2000); })">
+      <div class="account-card" onclick="copyAccount('000-0000-0000')">
         <div class="account-role">신랑</div>
         <div class="account-name">박현원</div>
         <div class="account-bank">은행명 000-0000-0000</div>
-        <div style="font-size:0.65rem; color:#bbb; margin-top:8px; letter-spacing:1px;">터치하여 복사</div>
       </div>
-      <div class="account-card" onclick="navigator.clipboard.writeText('000-0000-0000').then(function(){ var t=document.getElementById('toast'); t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); }, 2000); })">
+      <div class="account-card" onclick="copyAccount('000-0000-0000')">
         <div class="account-role">신부</div>
         <div class="account-name">이혜진</div>
         <div class="account-bank">은행명 000-0000-0000</div>
-        <div style="font-size:0.65rem; color:#bbb; margin-top:8px; letter-spacing:1px;">터치하여 복사</div>
       </div>
     </div>
   </div>
@@ -483,7 +481,21 @@
     }
   }, 3000);
 
-  
+  // Account
+  function copyAccount(text) {
+    var el = document.createElement('textarea');
+    el.value = text;
+    el.style.position = 'fixed';
+    el.style.opacity = '0';
+    document.body.appendChild(el);
+    el.focus();
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+    var t = document.getElementById('toast');
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 2000);
+  }
 </script>
 </body>
 </html>
