@@ -70,6 +70,11 @@
       100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
     }
 
+    @keyframes pulse {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50%       { transform: translateX(-50%) scale(1.08); }
+    }
+
     /* ── Section inner wrapper ── */
     .section-inner {
       width: 100%;
@@ -406,6 +411,22 @@
 <div class="hero" id="hero">
   <img src="1st.jpg" />
   <div id="hearts-container" style="position:absolute;inset:0;pointer-events:none;overflow:hidden;"></div>
+  <button onclick="document.querySelector('.greeting').scrollIntoView({behavior:'smooth'})" style="
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 32px;
+    border: 1px solid #111;
+    background: transparent;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    cursor: pointer;
+    color: #111;
+    animation: pulse 2s ease-in-out infinite;
+  ">Yes, I'll join</button>
 </div>
 
 <!-- Greeting -->
