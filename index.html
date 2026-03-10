@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>박현원 ♥ 이혜진 결혼합니다</title>
+  <title>[H.H] Wedding Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Gowun+Dodum&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -26,16 +26,22 @@
 
     /* ── Hero ── */
     .hero {
+      min-height: 100vh;
+      position: relative;
       background: url('1st.jpg') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 30px;
+      overflow: hidden;
     }
 
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 20%, rgba(0,0,0,0.04) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 80%, rgba(0,0,0,0.04) 0%, transparent 60%);
+      background: rgba(0,0,0,0.3);  
     }
 
     .petal {
