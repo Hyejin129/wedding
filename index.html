@@ -66,6 +66,30 @@
     .env-letter-heart { font-size:1.2rem; color:#e74c3c; }
     .env-letter-name { font-family:'Georgia',serif; font-size:0.9rem; letter-spacing:2px; color:#555; }
 
+    #join-btn {
+      margin-top: 20px;
+      padding: 8px 20px;
+      border: 0.5px solid #111;
+      background: transparent;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+      color: #111;
+      opacity: 0;
+      animation: btnAppear 0.5s ease 2.1s forwards, btnPulse 1.8s ease-in-out 2.6s infinite;
+    }
+
+    @keyframes btnAppear {
+      to { opacity: 1; }
+    }
+    
+    @keyframes btnPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
     /* ── Hero ── */
     .hero {
       background-color: white;
@@ -76,6 +100,10 @@
       max-height: 100vh;
       max-width: 100%;
       object-fit: contain;
+      animation: heroReveal 1.5s ease forwards;
+    }
+
+    .hero.reveal-hero {
       animation: heroReveal 1.5s ease forwards;
     }
 
@@ -458,21 +486,11 @@
         <div class="env-letter-name">Will you celebrate with us?</div>
       </div>
     </div>
-    <button onclick="
+    <button id="join-btn" onclick="
       document.querySelector('.envelope-wrap').style.display='none';
       document.documentElement.style.scrollSnapType='y mandatory';
       document.documentElement.style.overflowY='scroll';
       document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
-    " style="
-      padding: 8px 20px;
-      border: 0.5px solid #111;
-      background: transparent;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.85rem;
-      letter-spacing: 3px;
-      cursor: pointer;
-      color: #111;
     ">Yes, I'll join!!</button>
   </div>
 </div>
@@ -639,6 +657,8 @@
 </footer-->
 
 <script>
+  // Hero
+  document.querySelector('.hero').classList.add('reveal-hero');
   
   // Hearts
   const container = document.getElementById('hearts-container');
