@@ -177,6 +177,11 @@
     /* ── Date ── */
     .date-wrap {
       background: white;
+      overflow: hidden;
+    }
+
+    .date-wrap .section-inner {
+      padding: 20px 30px;
     }
 
     .calendar {
@@ -237,6 +242,11 @@
       position: relative;
       z-index: 1;
       color: white;
+    }
+    
+    /* ── Venue ── */
+    .venue-wrap {
+      background: var(--soft);
     }
 
     /* ── Info cards ── */
@@ -573,6 +583,19 @@
   </div>
 </section>
 
+<!-- Venue -->
+<section class="venue-wrap">
+  <div class="section-inner reveal">
+    <div class="section-label">Venue</div>
+    <div class="thin-line"></div>
+    <div style="text-align:center; line-height:2;">
+      <div style="font-size:1.1rem; font-weight:600; margin-bottom:8px;">놀이동산</div>
+      <div style="font-size:0.85rem; color:#555; letter-spacing:1px;">서울특별시 어딘가</div>
+      <div style="font-size:0.85rem; color:#555; margin-top:4px;">오후 2시</div>
+    </div>
+    <a class="map-btn" href="#" onclick="alert('지도 연결 예정')">✦ 오시는 길 보기</a>
+  </div>
+</section>
 <!-- Gallery -->
 <!--section class="gallery-wrap">
   <div class="section-inner reveal">
