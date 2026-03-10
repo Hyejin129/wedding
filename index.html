@@ -26,23 +26,21 @@
 
     /* ── Hero ── */
     .hero {
-      min-height: 100vh;
       position: relative;
       background: url('1st.jpg') center/contain no-repeat;
       background-color: white;
+      width: 100%;
+      aspect-ratio: 3/4;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      padding: 60px 30px;
+      padding: 30px;
       overflow: hidden;
     }
-
+    
     .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.3);  
+      display: none;
     }
 
     .petal {
@@ -522,19 +520,6 @@
 
 <!-- Petals -->
 <div class="hero" id="hero">
-  <div class="hero-label">Wedding Invitation</div>
-  <div class="hero-names">
-    박현원
-    <span class="amp">&amp;</span>
-    이혜진
-  </div>
-  <div class="hero-divider"></div>
-  <div class="hero-date">2027 · 01 · 01</div>
-  <div class="hero-sub">놀이동산에서 함께합니다</div>
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
 </div>
 
 <!-- Greeting -->
