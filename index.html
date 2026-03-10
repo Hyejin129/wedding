@@ -27,7 +27,7 @@
     .hero, section, .attend-wrap, .gallery-wrap, .account-wrap { touch-action: pan-y; }
     
     /* ── Envelope ── */
-    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 0; align-items: center; justify-content: center; background: #f5f0eb; overflow-y: auto;}
+    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 0; align-items: center; justify-content: center; background: #f5f0eb; overflow-y: auto;  padding-bottom: max(40px, env(safe-area-inset-bottom)); }
     .envelope { width: 280px; height: 190px; position: relative; perspective: 600px; }
     .env-body { position: absolute; inset: 0; background: #fff; border: 1px solid #ddd; border-radius: 2px; }
     .env-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 95px; background: #f0ebe4; clip-path: polygon(0 100%, 50% 0%, 100% 100%); }
@@ -281,18 +281,20 @@
 
 <script>
   // No Zoom
-  document.addEventListener('touchmove', function(e) {
-    if (e.touches.length > 1) e.preventDefault();
-  }, { passive: false });
-  document.addEventListener('touchstart', function(e) {
-    if (e.touches.length > 1) e.preventDefault();
-  }, { passive: false });
   document.addEventListener('gesturestart', function(e) {
     e.preventDefault();
   });
   document.addEventListener('wheel', function(e) {
     if (e.ctrlKey) e.preventDefault();
   }, { passive: false });
+  document.querySelectorAll('section, .hero, .gallery-wrap, .account-wrap').forEach(function(el) {
+    el.addEventListener('touchstart', function(e) {
+      if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+    el.addEventListener('touchmove', function(e) {
+      if (e.touches.length > 1) e.preventDefault();
+    }, { passive: false });
+  });
 
   // Envelope Scroll
   document.body.style.overflow = 'hidden';
