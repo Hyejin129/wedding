@@ -38,6 +38,7 @@
     
     /* ── Join button ── */
     #join-btn { margin-top: 60px; padding: 8px 20px; border: 0.5px solid #111; background: transparent; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; letter-spacing: 3px; cursor: pointer; color: #111; opacity: 0; animation: btnAppear 0.5s ease 2.1s forwards, btnPulse 1.8s ease-in-out 2.6s infinite; }
+    .invited-title { visibility: hidden; }
     
     /* ── Hero ── */
     .hero { background-color: white; position: relative; }
@@ -297,20 +298,10 @@
 
 <script>
 
-  // 임시 테스트
-  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-  
-  // Hero
+  // hero 이미지 초기 숨기기
   document.querySelector('.hero img').style.opacity = '0';
   document.querySelector('.hero img').style.transform = 'scale(1.05)';
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) e.target.classList.add('visible');
-    });
-  }, { threshold: 0.15 });
-  reveals.forEach(r => observer.observe(r));
-  
+
   // Hearts
   const container = document.getElementById('hearts-container');
   for (let i = 0; i < 20; i++) {
@@ -327,6 +318,8 @@
     `;
     container.appendChild(h);
   }
+
+  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
