@@ -17,6 +17,15 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html {
+      scroll-snap-type: y mandatory;
+    }
+    
+    section, .hero, .attend-wrap, footer {
+      scroll-snap-align: start;
+      min-height: 100vh;
+    }
+    
     body {
       background: var(--cream);
       font-family: 'Noto Serif KR', serif;
@@ -27,16 +36,12 @@
     /* ── Hero ── */
     .hero {
       position: relative;
-      background: url('1st.jpg') center/contain no-repeat;
-      background-color: white;
-      width: 100%;
-      aspect-ratio: 3/4;
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
-      padding: 30px;
-      overflow: hidden;
+      justify-content: center;
+      background-color: white;
+      scroll-snap-align: start;
     }
     
     .hero::before {
@@ -154,8 +159,12 @@
     /* ── Section base ── */
     section {
       padding: 80px 30px;
-      max-width: 480px;
-      margin: 0 auto;
+      max-width: 100%;
+      margin: 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .section-label {
@@ -520,6 +529,7 @@
 
 <!-- Petals -->
 <div class="hero" id="hero">
+  <img src="1st.jpg" style="max-height:100vh; max-width:100%; object-fit:contain;" />
 </div>
 
 <!-- Greeting -->
