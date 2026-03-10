@@ -8,7 +8,6 @@
   <style>
     :root {
       --cream: #ffffff;
-      --blush: #e0e0e0;
       --rose: #111111;
       --deep: #111111;
       --gold: #555555;
@@ -19,13 +18,9 @@
 
     html {
       scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
     }
-    
-    section, .hero, .attend-wrap, footer {
-      scroll-snap-align: start;
-      min-height: 100vh;
-    }
-    
+
     body {
       background: var(--cream);
       font-family: 'Noto Serif KR', serif;
@@ -33,122 +28,28 @@
       overflow-x: hidden;
     }
 
-    /* ── Hero ── */
-    .hero {
-      position: relative;
+    /* ── Snap containers ── */
+    .hero, section, .attend-wrap, footer {
+      scroll-snap-align: start;
+      height: 100vh;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
+      width: 100%;
+    }
+
+    /* ── Hero ── */
+    .hero {
       background-color: white;
-      scroll-snap-align: start;
-    }
-    
-    .hero::before {
-      display: none;
+      position: relative;
     }
 
-    .petal {
-      position: absolute;
-      width: 6px; height: 10px;
-      background: radial-gradient(ellipse, rgba(180,180,180,0.5), rgba(100,100,100,0.2));
-      border-radius: 50% 0 50% 0;
-      animation: fall linear infinite;
-      pointer-events: none;
-    }
-    @keyframes fall {
-      0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-      10%  { opacity: 1; }
-      90%  { opacity: 0.6; }
-      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-    }
-
-    .hero-label {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 0.85rem;
-      letter-spacing: 4px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 28px;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 0.3s;
-    }
-
-    .hero-names {
-      font-family: 'Gowun Dodum', sans-serif;
-      font-size: clamp(3rem, 12vw, 5rem);
-      font-weight: 300;
-      line-height: 1.15;
-      text-align: center;
-      color: var(--deep);
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 0.6s;
-    }
-
-    .hero-names .amp {
-      font-style: italic;
-      color: var(--rose);
-      font-size: 0.85em;
-      display: block;
-      margin: 4px 0;
-    }
-
-    .hero-divider {
-      width: 60px;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #111, transparent);
-      margin: 32px auto;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 0.9s;
-    }
-
-    .hero-date {
-      font-size: 0.95rem;
-      letter-spacing: 3px;
-      color: var(--rose);
-      text-align: center;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 1.1s;
-    }
-
-    .hero-sub {
-      margin-top: 10px;
-      font-size: 0.8rem;
-      letter-spacing: 2px;
-      color: rgba(61,43,31,0.5);
-      text-align: center;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 1.3s;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      opacity: 0;
-      animation: fadeUp 1s ease forwards 1.8s;
-    }
-    .scroll-hint span {
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      color: rgba(61,43,31,0.4);
-      text-transform: uppercase;
-    }
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollLine 1.5s ease-in-out infinite;
-    }
-    @keyframes scrollLine {
-      0%, 100% { opacity: 0.3; transform: scaleY(1); }
-      50% { opacity: 1; transform: scaleY(1.2); }
+    .hero img {
+      max-height: 100vh;
+      max-width: 100%;
+      object-fit: contain;
     }
 
     @keyframes fadeUp {
@@ -156,15 +57,11 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ── Section base ── */
-    section {
-      padding: 80px 30px;
-      max-width: 100%;
-      margin: 0;
+    /* ── Section inner wrapper ── */
+    .section-inner {
       width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      max-width: 480px;
+      padding: 40px 30px;
     }
 
     .section-label {
@@ -215,10 +112,71 @@
       letter-spacing: 1px;
     }
 
-    /* ── Info cards ── */
-    .info-wrap {
+    /* ── Date ── */
+    .date-wrap {
       background: white;
     }
+
+    .calendar {
+      background: white;
+      padding: 20px 0;
+      margin-bottom: 20px;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      text-align: center;
+    }
+
+    .cal-day-name {
+      font-size: 0.7rem;
+      color: #aaa;
+      padding: 4px 0;
+      letter-spacing: 1px;
+    }
+
+    .cal-day-name:first-child { color: #c0392b; }
+
+    .cal-day {
+      font-size: 0.85rem;
+      padding: 8px 2px;
+      color: #111;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .cal-day.empty { opacity: 0; pointer-events: none; }
+
+    .cal-day.wedding {
+      font-weight: 700;
+    }
+
+    .cal-day.wedding::before {
+      content: '♥';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -48%);
+      font-size: 2.4rem;
+      color: #e74c3c;
+      z-index: 0;
+      opacity: 0.85;
+      line-height: 1;
+    }
+
+    .cal-day.wedding span {
+      position: relative;
+      z-index: 1;
+      color: white;
+    }
+
+    /* ── Info cards ── */
+    .info-wrap { background: white; }
 
     .info-card {
       background: var(--soft);
@@ -252,7 +210,6 @@
       font-size: 1.05rem;
       color: var(--deep);
       line-height: 1.7;
-      font-weight: 400;
     }
 
     .info-card-sub {
@@ -262,82 +219,6 @@
       letter-spacing: 1px;
     }
 
-    /* ── Calendar ── */
-    .calendar {
-      background: white;
-      padding: 20px 0;
-      margin-bottom: 20px;
-    }
-
-    .calendar-header {
-      text-align: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1rem;
-      letter-spacing: 3px;
-      color: var(--gold);
-      margin-bottom: 16px;
-    }
-
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 4px;
-      text-align: center;
-    }
-
-    .cal-day-name {
-      font-size: 0.7rem;
-      color: #aaa;
-      padding: 4px 0;
-      letter-spacing: 1px;
-    }
-
-    .cal-day-name:first-child {
-      color: #c0392b;
-    }
-
-    .cal-day {
-      font-size: 0.85rem;
-      padding: 8px 2px;
-      color: #111;
-      aspect-ratio: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .cal-day.empty { opacity: 0; pointer-events: none; }
-
-    .cal-day.wedding {
-      position: relative;
-      font-weight: 700;
-      color: #111;
-    }
-
-    .cal-day.wedding::before {
-      content: '♥';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -48%);
-      font-size: 2.4rem;
-      color: #111;
-      z-index: 0;
-      opacity: 0.15;
-      line-height: 1;
-    }
-
-    .cal-day.wedding span {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* ── Map button ── */
     .map-btn {
       display: block;
       width: 100%;
@@ -354,15 +235,10 @@
       text-decoration: none;
       transition: all 0.3s;
     }
-    .map-btn:hover {
-      background: var(--gold);
-      color: white;
-    }
+    .map-btn:hover { background: var(--gold); color: white; }
 
     /* ── Gallery ── */
-    .gallery-wrap {
-      background: var(--cream);
-    }
+    .gallery-wrap { background: var(--cream); }
 
     .gallery-grid {
       display: grid;
@@ -378,7 +254,6 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      position: relative;
     }
 
     .gallery-item:first-child {
@@ -394,22 +269,15 @@
       color: rgba(61,43,31,0.25);
     }
 
-    .gallery-placeholder svg {
-      width: 32px; height: 32px;
-    }
+    .gallery-placeholder svg { width: 32px; height: 32px; }
+    .gallery-placeholder span { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
 
-    .gallery-placeholder span {
-      font-size: 0.7rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    /* ── RSVP / Attend ── */
+    /* ── RSVP ── */
     .attend-wrap {
       background: #111;
       color: #fff;
       text-align: center;
-      padding: 80px 30px;
+      flex-direction: column;
     }
 
     .attend-wrap .section-label { color: #fff; }
@@ -436,15 +304,10 @@
       transition: all 0.3s;
       background: transparent;
     }
-    .attend-btn:hover {
-      background: #fff;
-      color: #111;
-    }
+    .attend-btn:hover { background: #fff; color: #111; }
 
     /* ── Contact ── */
-    .contact-wrap {
-      background: var(--soft);
-    }
+    .contact-wrap { background: var(--soft); }
 
     .contact-grid {
       display: grid;
@@ -478,24 +341,22 @@
     .contact-btn {
       display: inline-block;
       padding: 7px 16px;
-      border: 1px solid rgba(201,133,106,0.4);
-      color: var(--rose);
+      border: 1px solid rgba(100,100,100,0.3);
+      color: var(--deep);
       font-size: 0.72rem;
       letter-spacing: 2px;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.25s;
     }
-    .contact-btn:hover {
-      background: var(--rose);
-      color: white;
-    }
+    .contact-btn:hover { background: var(--deep); color: white; }
 
     /* ── Footer ── */
     footer {
       background: var(--deep);
-      padding: 40px 30px;
       text-align: center;
+      flex-direction: column;
+      gap: 12px;
     }
 
     .footer-names {
@@ -504,7 +365,6 @@
       font-weight: 300;
       color: var(--cream);
       letter-spacing: 4px;
-      margin-bottom: 12px;
     }
 
     .footer-date {
@@ -527,14 +387,14 @@
 </head>
 <body>
 
-<!-- Petals -->
+<!-- Hero -->
 <div class="hero" id="hero">
-  <img src="1st.jpg" style="max-height:100vh; max-width:100%; object-fit:contain;" />
+  <img src="1st.jpg" />
 </div>
 
 <!-- Greeting -->
 <section class="greeting">
-  <div class="reveal">
+  <div class="section-inner reveal">
     <div class="section-label">Greeting</div>
     <div class="section-title">인사말</div>
     <div class="thin-line"></div>
@@ -546,18 +406,15 @@
       바쁘신 중에도 자리를 빛내주신다면<br>
       더없는 기쁨으로 간직하겠습니다.
     </p>
-    <div class="greeting-names">
-      박현원 · 이혜진 올림
-    </div>
+    <div class="greeting-names">박현원 · 이혜진 올림</div>
   </div>
 </section>
 
 <!-- Date -->
 <section class="date-wrap">
-  <div class="reveal">
+  <div class="section-inner reveal">
     <div class="section-label">Wedding Day</div>
     <div class="thin-line"></div>
-
     <div class="calendar">
       <div class="calendar-grid">
         <div class="cal-day-name">일</div>
@@ -567,46 +424,18 @@
         <div class="cal-day-name">목</div>
         <div class="cal-day-name">금</div>
         <div class="cal-day-name">토</div>
-
         <div class="cal-day wedding"><span>1</span></div>
-        <div class="cal-day">2</div>
-        <div class="cal-day">3</div>
-        <div class="cal-day">4</div>
-        <div class="cal-day">5</div>
-        <div class="cal-day">6</div>
-        <div class="cal-day">7</div>
-
-        <div class="cal-day">8</div>
-        <div class="cal-day">9</div>
-        <div class="cal-day">10</div>
-        <div class="cal-day">11</div>
-        <div class="cal-day">12</div>
-        <div class="cal-day">13</div>
-        <div class="cal-day">14</div>
-
-        <div class="cal-day">15</div>
-        <div class="cal-day">16</div>
-        <div class="cal-day">17</div>
-        <div class="cal-day">18</div>
-        <div class="cal-day">19</div>
-        <div class="cal-day">20</div>
-        <div class="cal-day">21</div>
-
-        <div class="cal-day">22</div>
-        <div class="cal-day">23</div>
-        <div class="cal-day">24</div>
-        <div class="cal-day">25</div>
-        <div class="cal-day">26</div>
-        <div class="cal-day">27</div>
-        <div class="cal-day">28</div>
-
-        <div class="cal-day">29</div>
-        <div class="cal-day">30</div>
-        <div class="cal-day">31</div>
-        <div class="cal-day empty"></div>
-        <div class="cal-day empty"></div>
-        <div class="cal-day empty"></div>
-        <div class="cal-day empty"></div>
+        <div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div>
+        <div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div>
+        <div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div>
+        <div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div>
+        <div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div>
+        <div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div>
+        <div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div>
+        <div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day">28</div>
+        <div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day">31</div>
+        <div class="cal-day empty"></div><div class="cal-day empty"></div>
+        <div class="cal-day empty"></div><div class="cal-day empty"></div>
       </div>
     </div>
   </div>
@@ -614,72 +443,33 @@
 
 <!-- Gallery -->
 <section class="gallery-wrap">
-  <div class="reveal">
+  <div class="section-inner reveal">
     <div class="section-label">Gallery</div>
     <div class="section-title">갤러리</div>
     <div class="thin-line"></div>
     <div class="gallery-grid">
-      <div class="gallery-item">
-        <div class="gallery-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="1"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <path d="M21 15l-5-5L5 21"/>
-          </svg>
-          <span>Photo</span>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="1"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <path d="M21 15l-5-5L5 21"/>
-          </svg>
-          <span>Photo</span>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="1"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <path d="M21 15l-5-5L5 21"/>
-          </svg>
-          <span>Photo</span>
-        </div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-            <rect x="3" y="3" width="18" height="18" rx="1"/>
-            <circle cx="8.5" cy="8.5" r="1.5"/>
-            <path d="M21 15l-5-5L5 21"/>
-          </svg>
-          <span>Photo</span>
-        </div>
-      </div>
+      <div class="gallery-item"><div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Photo</span></div></div>
+      <div class="gallery-item"><div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Photo</span></div></div>
+      <div class="gallery-item"><div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Photo</span></div></div>
+      <div class="gallery-item"><div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Photo</span></div></div>
     </div>
   </div>
 </section>
 
 <!-- Attend -->
 <section class="attend-wrap">
-  <div class="reveal">
+  <div class="section-inner reveal">
     <div class="section-label">RSVP</div>
     <div class="section-title">참석 여부</div>
     <div class="thin-line"></div>
-    <p class="attend-text">
-      참석 여부를 알려주시면<br>
-      더욱 세심하게 준비하겠습니다.
-    </p>
+    <p class="attend-text">참석 여부를 알려주시면<br>더욱 세심하게 준비하겠습니다.</p>
     <a class="attend-btn" href="tel:010-0000-0000">✦ 참석 의사 전달하기</a>
   </div>
 </section>
 
 <!-- Contact -->
 <section class="contact-wrap">
-  <div class="reveal">
+  <div class="section-inner reveal">
     <div class="section-label">Contact</div>
     <div class="section-title">연락처</div>
     <div class="thin-line"></div>
@@ -715,29 +505,10 @@
 </footer>
 
 <script>
-  // Petals
-  const hero = document.getElementById('hero');
-  for (let i = 0; i < 18; i++) {
-    const p = document.createElement('div');
-    p.className = 'petal';
-    p.style.cssText = `
-      left: ${Math.random() * 100}%;
-      top: ${Math.random() * 100}%;
-      animation-duration: ${4 + Math.random() * 6}s;
-      animation-delay: ${Math.random() * 6}s;
-      transform: rotate(${Math.random() * 360}deg) scale(${0.6 + Math.random()});
-      opacity: ${0.3 + Math.random() * 0.5};
-    `;
-    hero.appendChild(p);
-  }
-
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-      }
+      if (e.isIntersecting) e.target.classList.add('visible');
     });
   }, { threshold: 0.15 });
   reveals.forEach(r => observer.observe(r));
