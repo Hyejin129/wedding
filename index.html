@@ -81,7 +81,7 @@
     }
 
     #arrow {
-      display: inline-block;
+      display: block;
       width: 0;
       height: 0;
       border-top: 12px solid #111;
@@ -485,7 +485,13 @@
     cursor: pointer;
     color: #111;
     animation: pulse 2s ease-in-out infinite;
-  ">Yes, I'll join!!<span id="arrow"></span></button>
+  ">Yes, I'll join!!</button>
+  <span id="arrow" style="
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+  "></span>
 </div>
 
 <!-- Greeting -->
@@ -644,7 +650,8 @@
   
   document.querySelector('button').addEventListener('click', function() {
     heroLocked = false;
-    document.documentElement.style.scrollSnapType = 'y proximity';
+    document.documentElement.style.scrollSnapType = 'y mandatory';
+    document.documentElement.style.overflowY = 'scroll';
     document.querySelector('.greeting').scrollIntoView({behavior:'smooth'});
   });
   
