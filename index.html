@@ -50,8 +50,14 @@
       max-height: 100vh;
       max-width: 100%;
       object-fit: contain;
+      animation: heroReveal 1.5s ease forwards;
     }
 
+    @keyframes heroReveal {
+      0%   { opacity: 0; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -172,7 +178,7 @@
       left: 50%;
       transform: translate(-50%, -48%);
       font-size: 2.4rem;
-      color: #ff0000;
+      color: #ffbaba;
       z-index: 0;
       opacity: 0.85;
       line-height: 1;
@@ -453,7 +459,7 @@
 </section>
 
 <!-- Gallery -->
-<section class="gallery-wrap">
+<!--section class="gallery-wrap">
   <div class="section-inner reveal">
     <div class="section-label">Gallery</div>
     <div class="section-title">갤러리</div>
@@ -465,10 +471,10 @@
       <div class="gallery-item"><div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Photo</span></div></div>
     </div>
   </div>
-</section>
+</section-->
 
 <!-- Attend -->
-<section class="attend-wrap">
+<!--section class="attend-wrap">
   <div class="section-inner reveal">
     <div class="section-label">RSVP</div>
     <div class="section-title">참석 여부</div>
@@ -476,10 +482,10 @@
     <p class="attend-text">참석 여부를 알려주시면<br>더욱 세심하게 준비하겠습니다.</p>
     <a class="attend-btn" href="tel:010-0000-0000">✦ 참석 의사 전달하기</a>
   </div>
-</section>
+</section-->
 
 <!-- Contact -->
-<section class="contact-wrap">
+<!--section class="contact-wrap">
   <div class="section-inner reveal">
     <div class="section-label">Contact</div>
     <div class="section-title">연락처</div>
@@ -507,13 +513,13 @@
       </div>
     </div>
   </div>
-</section>
+</section-->
 
 <!-- Footer -->
-<footer>
+<!--footer>
   <div class="footer-names">박현원 &amp; 이혜진</div>
   <div class="footer-date">2027 · 01 · 01</div>
-</footer>
+</footer-->
 
 <script>
   // Hearts
@@ -528,7 +534,7 @@
       font-size: ${10 + Math.random() * 20}px;
       color: #ff0000;
       opacity: ${0.4 + Math.random() * 0.6};
-      animation: fallHeart ${3 + Math.random() * 5}s linear ${Math.random() * 5}s infinite;
+      animation: fallHeart ${6 + Math.random() * 8}s linear ${Math.random() * 5}s infinite;
     `;
     container.appendChild(h);
   }
