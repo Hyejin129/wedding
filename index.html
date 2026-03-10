@@ -483,15 +483,17 @@
 
   // Account
   function copyAccount(text) {
-    var el = document.createElement('textarea');
-    el.value = text;
-    el.style.position = 'fixed';
-    el.style.opacity = '0';
-    document.body.appendChild(el);
-    el.focus();
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
+    navigator.clipboard.writeText(text).catch(function() {
+      var el = document.createElement('textarea');
+      el.value = text;
+      el.style.position = 'fixed';
+      el.style.opacity = '0';
+      document.body.appendChild(el);
+      el.focus();
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
+    });
     var t = document.getElementById('toast');
     t.classList.add('show');
     setTimeout(function(){ t.classList.remove('show'); }, 2000);
