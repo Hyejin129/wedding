@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>박현원 ♥ 이혜진 결혼합니다</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf6f0;
+      --blush: #e8c9b8;
+      --rose: #c9856a;
+      --deep: #3d2b1f;
+      --gold: #c9a96e;
+      --soft: #f2ebe3;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--cream);
+      font-family: 'Noto Serif KR', serif;
+      color: var(--deep);
+      overflow-x: hidden;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      background: linear-gradient(160deg, #fdf8f2 0%, #f5ede3 50%, #ecddd0 100%);
+      padding: 60px 30px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(201,169,110,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(201,133,106,0.10) 0%, transparent 60%);
+    }
+
+    .petal {
+      position: absolute;
+      width: 6px; height: 10px;
+      background: radial-gradient(ellipse, rgba(232,201,184,0.7), rgba(201,133,106,0.3));
+      border-radius: 50% 0 50% 0;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 0.6; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
+    .hero-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.3s;
+    }
+
+    .hero-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 12vw, 5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      text-align: center;
+      color: var(--deep);
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.6s;
+    }
+
+    .hero-names .amp {
+      font-style: italic;
+      color: var(--rose);
+      font-size: 0.85em;
+      display: block;
+      margin: 4px 0;
+    }
+
+    .hero-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 32px auto;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 0.9s;
+    }
+
+    .hero-date {
+      font-size: 0.95rem;
+      letter-spacing: 3px;
+      color: var(--rose);
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.1s;
+    }
+
+    .hero-sub {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      color: rgba(61,43,31,0.5);
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.3s;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 1s ease forwards 1.8s;
+    }
+    .scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      color: rgba(61,43,31,0.4);
+      text-transform: uppercase;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollLine 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Section base ── */
+    section {
+      padding: 80px 30px;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.78rem;
+      letter-spacing: 4px;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      text-align: center;
+      color: var(--deep);
+      margin-bottom: 12px;
+    }
+
+    .thin-line {
+      width: 40px;
+      height: 1px;
+      background: var(--gold);
+      margin: 0 auto 36px;
+    }
+
+    /* ── Greeting ── */
+    .greeting {
+      background: var(--soft);
+    }
+
+    .greeting-text {
+      font-size: 0.92rem;
+      line-height: 2.1;
+      text-align: center;
+      color: rgba(61,43,31,0.8);
+      word-break: keep-all;
+    }
+
+    .greeting-names {
+      margin-top: 32px;
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--rose);
+      letter-spacing: 1px;
+    }
+
+    /* ── Info cards ── */
+    .info-wrap {
+      background: white;
+    }
+
+    .info-card {
+      background: var(--soft);
+      border: 1px solid rgba(201,169,110,0.25);
+      border-radius: 2px;
+      padding: 28px 24px;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .info-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--gold), var(--rose));
+    }
+
+    .info-card-label {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .info-card-value {
+      font-size: 1.05rem;
+      color: var(--deep);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .info-card-sub {
+      margin-top: 6px;
+      font-size: 0.78rem;
+      color: rgba(61,43,31,0.5);
+      letter-spacing: 1px;
+    }
+
+    /* ── Map button ── */
+    .map-btn {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 14px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--deep);
+      font-family: 'Noto Serif KR', serif;
+      font-size: 0.82rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .map-btn:hover {
+      background: var(--gold);
+      color: white;
+    }
+
+    /* ── Gallery ── */
+    .gallery-wrap {
+      background: var(--cream);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 3/4;
+      background: var(--soft);
+      border: 1px solid rgba(201,169,110,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-item:first-child {
+      grid-column: span 2;
+      aspect-ratio: 3/2;
+    }
+
+    .gallery-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(61,43,31,0.25);
+    }
+
+    .gallery-placeholder svg {
+      width: 32px; height: 32px;
+    }
+
+    .gallery-placeholder span {
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    /* ── RSVP / Attend ── */
+    .attend-wrap {
+      background: var(--deep);
+      color: var(--cream);
+      text-align: center;
+      padding: 80px 30px;
+    }
+
+    .attend-wrap .section-label { color: var(--gold); }
+    .attend-wrap .section-title { color: var(--cream); }
+    .attend-wrap .thin-line { background: rgba(201,169,110,0.5); }
+
+    .attend-text {
+      font-size: 0.88rem;
+      line-height: 2;
+      color: rgba(250,246,240,0.7);
+      margin-bottom: 36px;
+    }
+
+    .attend-btn {
+      display: inline-block;
+      padding: 14px 40px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Noto Serif KR', serif;
+      font-size: 0.82rem;
+      letter-spacing: 3px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      background: transparent;
+    }
+    .attend-btn:hover {
+      background: var(--gold);
+      color: var(--deep);
+    }
+
+    /* ── Contact ── */
+    .contact-wrap {
+      background: var(--soft);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .contact-card {
+      background: white;
+      border: 1px solid rgba(201,169,110,0.2);
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .contact-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .contact-name {
+      font-size: 0.95rem;
+      color: var(--deep);
+      margin-bottom: 12px;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      padding: 7px 16px;
+      border: 1px solid rgba(201,133,106,0.4);
+      color: var(--rose);
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .contact-btn:hover {
+      background: var(--rose);
+      color: white;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--deep);
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .footer-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: 4px;
+      margin-bottom: 12px;
+    }
+
+    .footer-date {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: rgba(250,246,240,0.4);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Petals -->
+<div class="hero" id="hero">
+  <div class="hero-label">Wedding Invitation</div>
+  <div class="hero-names">
+    박현원
+    <span class="amp">&amp;</span>
+    이혜진
+  </div>
+  <div class="hero-divider"></div>
+  <div class="hero-date">2027 · 01 · 01</div>
+  <div class="hero-sub">놀이동산에서 함께합니다</div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- Greeting -->
+<section class="greeting">
+  <div class="reveal">
+    <div class="section-label">Greeting</div>
+    <div class="section-title">인사말</div>
+    <div class="thin-line"></div>
+    <p class="greeting-text">
+      서로가 서로에게 가장 큰 선물이 되어<br>
+      평생을 함께 걸어가려 합니다.<br><br>
+      저희 두 사람이 하나가 되는 날,<br>
+      소중한 분들을 모시고자 합니다.<br><br>
+      바쁘신 중에도 자리를 빛내주신다면<br>
+      더없는 기쁨으로 간직하겠습니다.
+    </p>
+    <div class="greeting-names">
+      박현원 · 이혜진 올림
+    </div>
+  </div>
+</section>
+
+<!-- Info -->
+<section class="info-wrap">
+  <div class="reveal">
+    <div class="section-label">Details</div>
+    <div class="section-title">예식 안내</div>
+    <div class="thin-line"></div>
+
+    <div class="info-card">
+      <div class="info-card-label">Date &amp; Time</div>
+      <div class="info-card-value">2027년 1월 1일 (금)</div>
+      <div class="info-card-sub">오후 2시 예식</div>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-label">Venue</div>
+      <div class="info-card-value">놀이동산</div>
+      <div class="info-card-sub">웨딩홀 1층 그랜드볼룸</div>
+    </div>
+
+    <a class="map-btn" href="#" onclick="alert('지도 연결 예정')">
+      ✦ 오시는 길 보기
+    </a>
+  </div>
+</section>
+
+<!-- Gallery -->
+<section class="gallery-wrap">
+  <div class="reveal">
+    <div class="section-label">Gallery</div>
+    <div class="section-title">갤러리</div>
+    <div class="thin-line"></div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>Photo</span>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>Photo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Attend -->
+<section class="attend-wrap">
+  <div class="reveal">
+    <div class="section-label">RSVP</div>
+    <div class="section-title">참석 여부</div>
+    <div class="thin-line"></div>
+    <p class="attend-text">
+      참석 여부를 알려주시면<br>
+      더욱 세심하게 준비하겠습니다.
+    </p>
+    <a class="attend-btn" href="tel:010-0000-0000">✦ 참석 의사 전달하기</a>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-wrap">
+  <div class="reveal">
+    <div class="section-label">Contact</div>
+    <div class="section-title">연락처</div>
+    <div class="thin-line"></div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-role">신랑</div>
+        <div class="contact-name">박현원</div>
+        <a class="contact-btn" href="tel:010-0000-0000">연락하기</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">신부</div>
+        <div class="contact-name">이혜진</div>
+        <a class="contact-btn" href="tel:010-0000-0000">연락하기</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">신랑 측 혼주</div>
+        <div class="contact-name">박 ○ ○</div>
+        <a class="contact-btn" href="tel:010-0000-0000">연락하기</a>
+      </div>
+      <div class="contact-card">
+        <div class="contact-role">신부 측 혼주</div>
+        <div class="contact-name">이 ○ ○</div>
+        <a class="contact-btn" href="tel:010-0000-0000">연락하기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-names">박현원 &amp; 이혜진</div>
+  <div class="footer-date">2027 · 01 · 01</div>
+</footer>
+
+<script>
+  // Petals
+  const hero = document.getElementById('hero');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'petal';
+    p.style.cssText = `
+      left: ${Math.random() * 100}%;
+      top: ${Math.random() * 100}%;
+      animation-duration: ${4 + Math.random() * 6}s;
+      animation-delay: ${Math.random() * 6}s;
+      transform: rotate(${Math.random() * 360}deg) scale(${0.6 + Math.random()});
+      opacity: ${0.3 + Math.random() * 0.5};
+    `;
+    hero.appendChild(p);
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
