@@ -14,13 +14,13 @@
       --soft: #f5f5f5;  
     }
     
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box;   -webkit-text-size-adjust: 100%; touch-action: pan-y; }
     
     html { scroll-snap-type: none; height: 100%; }
     
     body { background: var(--cream); font-family: 'Noto Serif KR', serif; color: var(--deep); overflow-x: hidden; overflow-y: scroll; height: 100%; }
     
-    /* ── Snap ── */
+    /* ── Common ── */
     .hero, section, .attend-wrap, footer { scroll-snap-align: start; height: 100vh; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; }
     
     /* ── Envelope ── */
@@ -37,7 +37,7 @@
     .env-letter-name { font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 2px; color: #555; }
     
     /* ── Join button ── */
-    #join-btn { margin-top: 60px; padding: 8px 20px; border: 0.5px solid #111; background: transparent; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; letter-spacing: 3px; cursor: pointer; color: #111; opacity: 0; animation: btnAppear 0.5s ease 2.8s forwards, btnPulse 1.8s ease-in-out 3.3s infinite; }
+    #join-btn { margin-top: 60px; padding: 8px 20px; border: 0.5px solid #111; background: transparent; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; letter-spacing: 3px; cursor: pointer; color: #111; opacity: 0; animation: btnAppear 0.5s ease 2.8s forwards, btnPulse 1.8s ease-in-out 3.3s infinite; }
     .invited-title { visibility: hidden !important; }
     
     /* ── Hero ── */
@@ -86,7 +86,7 @@
     .contact-btn:hover { background: var(--deep); color: white; }
 
     /* ── Gallery ── */
-    .gallery-wrap { min-height: 100vh; background: var(--soft); }
+    .gallery-wrap { min-height: 100vh; background: var(--soft); padding: 60px 0; scroll-snap-align: start; }
     .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .gallery-item { aspect-ratio: 3/4; background: white; border: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: center; }
     
@@ -246,6 +246,14 @@
 </section>
 
 <script>
+  // No Zoom
+  document.addEventListener('touchmove', function(e) {
+    if (e.touches.length > 1) e.preventDefault();
+  }, { passive: false });
+  
+  document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+  });
   // Envelope Scroll
   document.body.style.overflow = 'hidden';
   
