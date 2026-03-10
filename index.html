@@ -14,7 +14,7 @@
       --soft: #f5f5f5;  
     }
     
-    * { margin: 0; padding: 0; box-sizing: border-box;   -webkit-text-size-adjust: 100%; }
+    * { margin: 0; padding: 0; box-sizing: border-box;  -webkit-text-size-adjust: 100%; touch-action: pan-y;}
     
     html { scroll-snap-type: none; height: 100%; }
     
@@ -23,7 +23,7 @@
     html, body { touch-action: pan-y; }
     
     /* ── Common ── */
-    .hero, section, .attend-wrap, footer { scroll-snap-align: start; height: 100vh; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; }
+    .hero, section, .attend-wrap, .gallery-wrap { scroll-snap-align: start; height: 100vh; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; }
     
     /* ── Envelope ── */
     .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 0; align-items: center; justify-content: center; background: #f5f0eb; }
@@ -43,7 +43,7 @@
     .invited-title { visibility: hidden !important; }
     
     /* ── Hero ── */
-    .hero { background-color: white; position: relative; }
+    .hero { background-color: white; position: relative; touch-action: pan-y; }
     .hero img { max-height: 100vh; max-width: 100%; object-fit: contain; }
     .hero.reveal-hero { animation: heroReveal 1.5s ease forwards; }
     
@@ -88,7 +88,7 @@
     .contact-btn:hover { background: var(--deep); color: white; }
 
     /* ── Gallery ── */
-    .gallery-wrap { min-height: 100vh; background: var(--soft); padding: 60px 0; scroll-snap-align: none; }
+    .gallery-wrap { height: auto !important; min-height: 100vh; }
     .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .gallery-item { aspect-ratio: 3/4; background: white; border: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: center; }
 
@@ -117,7 +117,7 @@
 <body>
 
 <div class="envelope-wrap">
-  <div style="display:flex; flex-direction:column; align-items:center; gap:24px;">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:24px; overflow:visible;">
     <div class="invited-title" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; letter-spacing:4px; color:#555; margin-bottom:10px;">You're Invited</div>
     <div class="envelope" style="margin-top:40px;">
       <div class="env-body"></div>
@@ -279,22 +279,24 @@
 </section>
 
 <script>
-  // No Zoom - 맨 위에
+  // No Zoom
   document.addEventListener('touchmove', function(e) {
     if (e.touches.length > 1) e.preventDefault();
   }, { passive: false });
-
   document.addEventListener('gesturestart', function(e) {
     e.preventDefault();
   });
+  document.addEventListener('wheel', function(e) {
+    if (e.ctrlKey) e.preventDefault();
+  }, { passive: false });
 
   // Envelope Scroll
   document.body.style.overflow = 'hidden';
-
+  
   // Hero Img
   document.querySelector('.hero img').style.opacity = '0';
   document.querySelector('.hero img').style.transform = 'scale(1.05)';
-
+  
   // Hearts
   const container = document.getElementById('hearts-container');
   for (let i = 0; i < 20; i++) {
@@ -311,7 +313,6 @@
     `;
     container.appendChild(h);
   }
-
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
