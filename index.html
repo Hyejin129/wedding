@@ -24,9 +24,10 @@
     
     /* ── Common ── */
     .hero, section, .attend-wrap, .gallery-wrap { scroll-snap-align: start; height: 100vh; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; }
+    .hero, section, .attend-wrap, .gallery-wrap, .account-wrap { touch-action: pan-y; }
     
     /* ── Envelope ── */
-    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 0; align-items: center; justify-content: center; background: #f5f0eb; }
+    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 0; align-items: center; justify-content: center; background: #f5f0eb; overflow-y: auto;}
     .envelope { width: 280px; height: 190px; position: relative; perspective: 600px; }
     .env-body { position: absolute; inset: 0; background: #fff; border: 1px solid #ddd; border-radius: 2px; }
     .env-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 95px; background: #f0ebe4; clip-path: polygon(0 100%, 50% 0%, 100% 100%); }
@@ -39,7 +40,7 @@
     .env-letter-name { font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 2px; color: #555; }
     
     /* ── Join button ── */
-    #join-btn { margin-top: 16px; padding: 8px 20px; border: 0.5px solid #111; background: transparent; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; letter-spacing: 3px; cursor: pointer; color: #111; opacity: 0; animation: btnAppear 0.5s ease 2.8s forwards, btnPulse 1.8s ease-in-out 3.3s infinite; }
+    #join-btn { margin-top: 30px; padding: 8px 20px; border: 0.5px solid #111; background: transparent; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.4rem; letter-spacing: 3px; cursor: pointer; color: #111; opacity: 0; animation: btnAppear 0.5s ease 2.8s forwards, btnPulse 1.8s ease-in-out 3.3s infinite; }
     .invited-title { visibility: hidden !important; }
     
     /* ── Hero ── */
@@ -117,7 +118,7 @@
 <body>
 
 <div class="envelope-wrap">
-  <div style="display:flex; flex-direction:column; align-items:center; gap:24px; overflow:visible;">
+  <div style="display:flex; flex-direction:column; align-items:center; gap:24px; padding: 40px 0;">
     <div class="invited-title" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; letter-spacing:4px; color:#555; margin-bottom:10px;">You're Invited</div>
     <div class="envelope" style="margin-top:40px;">
       <div class="env-body"></div>
