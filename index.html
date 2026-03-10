@@ -24,7 +24,7 @@
     .hero, section, .attend-wrap, footer { scroll-snap-align: start; height: 100vh; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; }
     
     /* ── Envelope ── */
-    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 80px; align-items: flex-start; justify-content: center; background: #f5f0eb; }
+    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 0; align-items: center; justify-content: center; background: #f5f0eb; }
     .envelope { width: 280px; height: 190px; position: relative; perspective: 600px; }
     .env-body { position: absolute; inset: 0; background: #fff; border: 1px solid #ddd; border-radius: 2px; }
     .env-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 95px; background: #f0ebe4; clip-path: polygon(0 100%, 50% 0%, 100% 100%); }
@@ -121,10 +121,15 @@
       </div>
     </div>
     <button id="join-btn" onclick="
+      var img = document.querySelector('.hero img');
       document.querySelector('.envelope-wrap').style.display='none';
       document.documentElement.style.scrollSnapType='y mandatory';
-      document.documentElement.style.overflowY='scroll';
       document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
+      setTimeout(function() {
+        img.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
+        img.style.opacity = '1';
+        img.style.transform = 'scale(1)';
+      }, 400);
     ">Yes, I'll join!!</button>
   </div>
 </div>
@@ -291,6 +296,10 @@
 </footer-->
 
 <script>
+
+  // 임시 테스트
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  
   // Hero
   document.querySelector('.hero img').style.opacity = '0';
   document.querySelector('.hero img').style.transform = 'scale(1.05)';
