@@ -24,7 +24,7 @@
     .hero, section, .attend-wrap, footer { scroll-snap-align: start; height: 100vh; min-height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden; width: 100%; }
     
     /* ── Envelope ── */
-    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center; background: #f5f0eb; }
+    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 80px; align-items: flex-start; justify-content: center; background: #f5f0eb; }
     .envelope { width: 280px; height: 190px; position: relative; perspective: 600px; }
     .env-body { position: absolute; inset: 0; background: #fff; border: 1px solid #ddd; border-radius: 2px; }
     .env-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 95px; background: #f0ebe4; clip-path: polygon(0 100%, 50% 0%, 100% 100%); }
@@ -43,7 +43,6 @@
     .hero { background-color: white; position: relative; }
     .hero img { max-height: 100vh; max-width: 100%; object-fit: contain; }
     .hero.reveal-hero { animation: heroReveal 1.5s ease forwards; }
-    .hero img.show { animation: heroReveal 1.5s ease forwards; }
     
     /* ── Section ── */
     .section-inner { width: 100%; max-width: 480px; padding: 40px 30px; }
@@ -108,8 +107,8 @@
 
 <div class="envelope-wrap">
   <div style="display:flex; flex-direction:column; align-items:center; gap:24px;">
-    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; letter-spacing:4px; color:#555;">You're Invited</div>
-    <div class="envelope">
+    <div style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; letter-spacing:4px; color:#555; margin-bottom:10px;">You're Invited</div>
+    <div class="envelope" style="margin-top:40px;">
       <div class="env-body"></div>
       <div class="env-left"></div>
       <div class="env-right"></div>
@@ -293,7 +292,18 @@
 
 <script>
   // Hero
-  document.querySelector('.hero img').classList.add('show');
+  const img = document.querySelector('.hero img');
+  img.style.opacity = '0';
+  img.style.transform = 'scale(1.05)';
+  document.querySelector('.envelope-wrap').style.display = 'none';
+  document.documentElement.style.scrollSnapType = 'y mandatory';
+  document.documentElement.style.overflowY = 'scroll';
+  document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
+  setTimeout(() => {
+    img.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
+    img.style.opacity = '1';
+    img.style.transform = 'scale(1)';
+  }, 100);
   
   // Hearts
   const container = document.getElementById('hearts-container');
