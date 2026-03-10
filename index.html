@@ -27,7 +27,7 @@
     .hero, section, .attend-wrap, .gallery-wrap, .account-wrap { touch-action: pan-y; }
     
     /* ── Envelope ── */
-    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; padding-top: 0; align-items: center; justify-content: center; background: #f5f0eb; overflow-y: auto;  padding-bottom: max(40px, env(safe-area-inset-bottom)); }
+    .envelope-wrap { position: fixed; inset: 0; z-index: 999; display: flex; align-items: center; justify-content: center; background: #f5f0eb; padding-bottom: max(60px, env(safe-area-inset-bottom)); }
     .envelope { width: 280px; height: 190px; position: relative; perspective: 600px; }
     .env-body { position: absolute; inset: 0; background: #fff; border: 1px solid #ddd; border-radius: 2px; }
     .env-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 95px; background: #f0ebe4; clip-path: polygon(0 100%, 50% 0%, 100% 100%); }
@@ -118,8 +118,8 @@
 <body>
 
 <div class="envelope-wrap">
-  <div style="display:flex; flex-direction:column; align-items:center; gap:24px; padding: 40px 0;">
-    <!--div class="invited-title" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; letter-spacing:4px; color:#555; margin-bottom:10px;">You're Invited</div>
+  <div style="display:flex; flex-direction:column; align-items:center; gap:24px; ">
+    <div class="invited-title" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:2rem; letter-spacing:4px; color:#555; margin-bottom:10px;">You're Invited</div>
     <div class="envelope" style="margin-top:40px;">
       <div class="env-body"></div>
       <div class="env-left"></div>
@@ -131,7 +131,7 @@
         <div class="env-letter-heart">♥</div>
         <div class="env-letter-name">Will you celebrate with us?</div>
       </div>
-  </div-->
+  </div>
     <button id="join-btn" 
       onclick="
         var img = document.querySelector('.hero img');
