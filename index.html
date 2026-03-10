@@ -87,9 +87,8 @@
 
     /* ── Gallery ── */
     .gallery-wrap { background: var(--soft); }
-    .gallery-grid { gap: 12px; }
-    .gallery-item { background: white; border: 1px solid #e8e8e8; }
-    .gallery-item:first-child { grid-column: unset; aspect-ratio: 3/4; }
+    .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .gallery-item { aspect-ratio: 3/4; background: white; border: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: center; }
     
     /* ── Scroll reveal ── */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -129,13 +128,14 @@
         img.style.transform = 'scale(1.05)';
         img.style.transition = 'none';
         document.querySelector('.envelope-wrap').style.display='none';
+        document.documentElement.style.scrollSnapType='none';
         window.scrollTo(0, 0);
-        document.documentElement.style.scrollSnapType='y mandatory';
         setTimeout(function() {
+          document.documentElement.style.scrollSnapType='y mandatory';
           img.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
           img.style.opacity = '1';
           img.style.transform = 'scale(1)';
-        }, 100);
+        }, 50);
       "
     >Yes, I'll join!!</button>
   </div>
