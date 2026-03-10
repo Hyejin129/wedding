@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>[H.H] Wedding Invitation</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Gowun+Dodum&display=swap" rel="stylesheet">
   <style>
@@ -37,7 +37,7 @@
     .env-letter-name { font-family: 'Georgia', serif; font-size: 0.9rem; letter-spacing: 2px; color: #555; }
     
     /* ── Join button ── */
-    #join-btn { margin-top: 60px; padding: 8px 20px; border: 0.5px solid #111; background: transparent; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; letter-spacing: 3px; cursor: pointer; color: #111; opacity: 0; animation: btnAppear 0.5s ease 2.1s forwards, btnPulse 1.8s ease-in-out 2.6s infinite; }
+    #join-btn { margin-top: 60px; padding: 8px 20px; border: 0.5px solid #111; background: transparent; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; letter-spacing: 3px; cursor: pointer; color: #111; opacity: 0; animation: btnAppear 0.5s ease 2.8s forwards, btnPulse 1.8s ease-in-out 3.3s infinite; }
     .invited-title { visibility: hidden !important; }
     
     /* ── Hero ── */
@@ -86,7 +86,7 @@
     .contact-btn:hover { background: var(--deep); color: white; }
 
     /* ── Gallery ── */
-    .gallery-wrap { background: var(--soft); }
+    .gallery-wrap { min-height: 100vh; background: var(--soft); }
     .gallery-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .gallery-item { aspect-ratio: 3/4; background: white; border: 1px solid #e8e8e8; display: flex; align-items: center; justify-content: center; }
     
