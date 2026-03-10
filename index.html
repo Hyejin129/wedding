@@ -87,11 +87,9 @@
 
     /* ── Gallery ── */
     .gallery-wrap { background: var(--soft); }
-    
-    /* ── Footer ── */
-    footer { background: var(--deep); text-align: center; flex-direction: column; gap: 12px; }
-    .footer-names { font-family: 'Gowun Dodum', sans-serif; font-size: 1.4rem; font-weight: 300; color: var(--cream); letter-spacing: 4px; }
-    .footer-date { font-size: 0.75rem; letter-spacing: 3px; color: rgba(250,246,240,0.4); }
+    .gallery-grid { gap: 12px; }
+    .gallery-item { background: white; border: 1px solid #e8e8e8; }
+    .gallery-item:first-child { grid-column: unset; aspect-ratio: 3/4; }
     
     /* ── Scroll reveal ── */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
@@ -127,15 +125,17 @@
     <button id="join-btn" 
       onclick="
         var img = document.querySelector('.hero img');
+        img.style.opacity = '0';
+        img.style.transform = 'scale(1.05)';
+        img.style.transition = 'none';
         document.querySelector('.envelope-wrap').style.display='none';
+        window.scrollTo(0, 0);
         document.documentElement.style.scrollSnapType='y mandatory';
-        window.scrollTo(0, 0);  // ← 이거 추가! 맨 위(hero)로 강제 이동
-        document.querySelector('.hero').scrollIntoView({behavior:'smooth'});
         setTimeout(function() {
           img.style.transition = 'opacity 1.5s ease, transform 1.5s ease';
           img.style.opacity = '1';
           img.style.transform = 'scale(1)';
-        }, 400);
+        }, 100);
       "
     >Yes, I'll join!!</button>
   </div>
@@ -174,53 +174,12 @@
     <div style="text-align:center; font-family:'Cormorant Garamond',serif; font-size:4rem; font-weight:300; color:#111; margin-bottom:16px; line-height:1;">8</div>
     <div class="calendar">
       <div class="calendar-grid">
-        <div class="cal-day-name">일</div>
-        <div class="cal-day-name">월</div>
-        <div class="cal-day-name">화</div>
-        <div class="cal-day-name">수</div>
-        <div class="cal-day-name">목</div>
-        <div class="cal-day-name">금</div>
-        <div class="cal-day-name">토</div>
-      
-        <div class="cal-day">1</div>
-        <div class="cal-day">2</div>
-        <div class="cal-day">3</div>
-        <div class="cal-day">4</div>
-        <div class="cal-day">5</div>
-        <div class="cal-day">6</div>
-        <div class="cal-day">7</div>
-      
-        <div class="cal-day">8</div>
-        <div class="cal-day">9</div>
-        <div class="cal-day">10</div>
-        <div class="cal-day">11</div>
-        <div class="cal-day">12</div>
-        <div class="cal-day">13</div>
-        <div class="cal-day">14</div>
-      
-        <div class="cal-day">15</div>
-        <div class="cal-day">16</div>
-        <div class="cal-day">17</div>
-        <div class="cal-day">18</div>
-        <div class="cal-day">19</div>
-        <div class="cal-day">20</div>
-        <div class="cal-day">21</div>
-      
-        <div class="cal-day">22</div>
-        <div class="cal-day">23</div>
-        <div class="cal-day">24</div>
-        <div class="cal-day">25</div>
-        <div class="cal-day">26</div>
-        <div class="cal-day">27</div>
-        <div class="cal-day wedding"><span>28</span></div>
-      
-        <div class="cal-day">29</div>
-        <div class="cal-day">30</div>
-        <div class="cal-day">31</div>
-        <div class="cal-day empty"></div>
-        <div class="cal-day empty"></div>
-        <div class="cal-day empty"></div>
-        <div class="cal-day empty"></div>
+        <div class="cal-day-name">일</div><div class="cal-day-name">월</div><div class="cal-day-name">화</div><div class="cal-day-name">수</div><div class="cal-day-name">목</div><div class="cal-day-name">금</div><div class="cal-day-name">토</div>
+        <div class="cal-day">1</div><div class="cal-day">2</div><div class="cal-day">3</div><div class="cal-day">4</div><div class="cal-day">5</div><div class="cal-day">6</div><div class="cal-day">7</div>
+        <div class="cal-day">8</div><div class="cal-day">9</div><div class="cal-day">10</div><div class="cal-day">11</div><div class="cal-day">12</div><div class="cal-day">13</div><div class="cal-day">14</div>
+        <div class="cal-day">15</div><div class="cal-day">16</div><div class="cal-day">17</div><div class="cal-day">18</div><div class="cal-day">19</div><div class="cal-day">20</div><div class="cal-day">21</div>
+        <div class="cal-day">22</div><div class="cal-day">23</div><div class="cal-day">24</div><div class="cal-day">25</div><div class="cal-day">26</div><div class="cal-day">27</div><div class="cal-day wedding"><span>28</span></div>
+        <div class="cal-day">29</div><div class="cal-day">30</div><div class="cal-day">31</div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div><div class="cal-day empty"></div>
       </div>
     </div>
   </div>
@@ -259,12 +218,12 @@
       </div>
       <div class="contact-card">
         <div class="contact-role">신랑 측 혼주</div>
-        <div class="contact-name">박 ○ ○</div>
+        <div class="contact-name">○ ○ ○</div>
         <a class="contact-btn" href="tel:010-0000-0000">연락하기</a>
       </div>
       <div class="contact-card">
         <div class="contact-role">신부 측 혼주</div>
-        <div class="contact-name">이 ○ ○</div>
+        <div class="contact-name">○ ○ ○</div>
         <a class="contact-btn" href="tel:010-0000-0000">연락하기</a>
       </div>
     </div>
@@ -275,7 +234,6 @@
 <section class="gallery-wrap">
   <div class="section-inner reveal">
     <div class="section-label">Gallery</div>
-    <div class="section-title">갤러리</div>
     <div class="thin-line"></div>
     <div class="gallery-grid">
       <div class="gallery-item"><div class="gallery-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg><span>Photo</span></div></div>
@@ -285,12 +243,6 @@
     </div>
   </div>
 </section>
-
-<!-- Footer -->
-<footer>
-  <div class="footer-names">박현원 &amp; 이혜진</div>
-  <div class="footer-date">2027 · 01 · 01</div>
-</footer>
 
 <script>
 
